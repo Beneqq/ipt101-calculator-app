@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Calculator</title>
+</head>
+<body>
+    <style>
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 800px;
+            background-color: #6e6e6e;
+        }
+
+        .Calculator {
+            background-color: green;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            width: 370px;
+            border: 2px solid black;
+        }
+
+        #result {
+            font-size: 40px;
+            padding: 40px;
+            margin: 10px 10px 10px 5px;
+            width: 361px;
+            text-align: right;
+            background: linear-gradient(rgb(34, 34, 34),gray, rgb(34, 34, 34));
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 2px solid black;
+            color: white;
+            
+
+
+
+        }
+
+        .del-btn, .num-btn, .equal-btn {
+            padding: 20px;
+            margin: 5px;
+            font-size: 25px;
+            border-radius: 10px;
+            border: 1px solid black;
+            
+        }
+
+        .del-btn {
+            width: 173px;
+            color: white;
+            background-color: red;
+        }
+
+        .del-btn:hover{
+            background-color: rgb(153, 0, 31);
+        }
+
+        .equal-btn {
+            width: 173px;
+            color: white;
+            background-color: #221f1f;
+        }
+
+        .equal-btn:hover{
+            background-color: black;
+        }
+
+        .num-btn {
+            width: 78px; 
+            height: 75px;
+            margin: 5px;
+            margin-bottom: 10px;
+            color: white;
+            background-color: rgb(88, 88, 88);
+        }
+
+        .num-btn:hover{
+            background-color: #221f1f;
+            color: #fff;
+        }
+
+        h1 {
+            background-color: #6e6e6e;
+            padding: 10px;
+            text-align: center;
+            width: 100%; 
+            font-weight: 600;
+            font-family: Arial, Helvetica, sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <h1>Calculator App</h1>
+    <div class="Calculator">
+        <input type="text" id="result">
+
+        <input type="button" value="C" class="num-btn" onclick="clr()">
+        <input type="button" value="*" class="num-btn" onclick="multiply()">
+        <input type="button" value="⌫" class="del-btn" onclick="del()"> <br>
+
+        <input type="button" value="7" class="num-btn" onclick="appendNum(7)">
+        <input type="button" value="8" class="num-btn" onclick="appendNum(8)">
+        <input type="button" value="9" class="num-btn" onclick="appendNum(9)">
+        <input type="button" value="+" class="num-btn" onclick="add()"><br>
+
+        <input type="button" value="4" class="num-btn" onclick="appendNum(4)">
+        <input type="button" value="5" class="num-btn" onclick="appendNum(5)">
+        <input type="button" value="6" class="num-btn" onclick="appendNum(6)">
+        <input type="button" value="-" class="num-btn" onclick="minus()"> <br>
+
+        <input type="button" value="1" class="num-btn" onclick="appendNum(1)">
+        <input type="button" value="2" class="num-btn" onclick="appendNum(2)">
+        <input type="button" value="3" class="num-btn" onclick="appendNum(3)">
+        <input type="button" value="/" class="num-btn" onclick="divide()"> <br>
+        
+
+        <input type="button" value="." class="num-btn" onclick="appendNum('.')">
+        <input type="button" value="0" class="num-btn" onclick="appendNum(0)">
+        <input type="button" value="=" class="equal-btn" onclick="equal()"> <br>
+        
+
+        
+        
+    </div>
+    
+    <script>
+
+        let currentInput = '';
+        let currentOperator = '';
+
+        function appendNum(number) {
+            currentInput += number;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function add() {
+            currentOperator = "+";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function minus() {
+            currentOperator = "-";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = "/";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function multiply() {
+            currentOperator = "*";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function equal() {
+            const result = eval(currentInput);
+            document.getElementById("result").value = result;
+            currentOperator = '';
+            currentInput = result.toString();
+        }
+
+        function clr() {
+            currentOperator = '';
+            currentInput = '';
+            document.getElementById("result").value = '';
+        }
+
+        function del() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById("result").value = currentInput;
+        }
+    </script>
+    
+</body>
+</html>
